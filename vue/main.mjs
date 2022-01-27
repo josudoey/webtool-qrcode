@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { Portal, PortalTarget } from 'portal-vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import routes from './routes.mjs'
 
@@ -12,6 +13,8 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 Vue.use(Router)
+Vue.component('Portal', Portal)
+Vue.component('PortalTarget', PortalTarget)
 
 const router = new Router({
   mode: 'hash',

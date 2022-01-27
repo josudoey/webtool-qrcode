@@ -1,7 +1,30 @@
 .container-fluid.px-0
   nav.navbar.navbar-dark.bg-dark
     .navbar-brand.d-flex
-      div Webtool Template
-  .container-fluid.px-0
-    b-card(no-body)
-      b-card-body template
+      div webtool qrcode
+  .container-fluid.row 
+    b-card.col-6
+      b-card-title generator
+      b-form-input(v-model="text" placeholder="qrcode data")
+      template(v-if="text")
+        b-card-title qrcode
+        qrcode(v-model="text")
+    b-card.col-6
+      imager-reader(@load="$refs.zbar.scanImage($event)")
+        b-card-title.d-inline-block zbar
+        open-image.ml-1(@load="$refs.zbar.scanImage($event)")
+      zbar-provider(ref="zbar"
+        origin-image-portal="originImage"
+        loc-image-portal="locImage"
+        @result="result=JSON.stringify($event,null,4)"
+      )
+      template(v-if="result")
+        .row
+          .col-6
+            b-card-title origin
+            portal-target(name="originImage")
+          .col-6
+            b-card-title loc
+            portal-target(name="locImage")
+        h5 result
+        pre {{result}}

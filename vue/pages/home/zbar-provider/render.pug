@@ -1,0 +1,5 @@
+span
+  portal(v-if="originImagePortal" :to="originImagePortal")
+    img.w-100(v-if="img" :src="img.src")
+  portal(v-if="locImagePortal" :to="locImagePortal")
+    img.w-100(v-if="locImageUrl" :src="locImageUrl")
